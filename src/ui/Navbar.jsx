@@ -1,8 +1,14 @@
+import { useLocation, useNavigate } from "react-router-dom";
+
 // import { useState } from 'react';
 function Navbar() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
     <>
       <div className="navbar bg-base-300 shadow-sm">
+        {/* dropdown */}
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -27,27 +33,59 @@ function Navbar() {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a>Student</a>
+                <a
+                  className={
+                    location.pathname === "/student" ? "menu-active" : ""
+                  }
+                  onClick={() => navigate("/student")}
+                >
+                  Student
+                </a>
               </li>
 
               <li>
-                <a>Score</a>
+                <a
+                  className={
+                    location.pathname === "/score" ? "menu-active" : ""
+                  }
+                  onClick={() => navigate("/score")}
+                >
+                  Score
+                </a>
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">Sunshine</a>
+          <a className="btn btn-ghost text-xl" onClick={() => navigate("/")}>
+            Sunshine
+          </a>
         </div>
+
+        {/* Web links */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>Student</a>
+              <a
+                className={
+                  location.pathname === "/student" ? "menu-active" : ""
+                }
+                onClick={() => navigate("/student")}
+              >
+                Student
+              </a>
             </li>
 
             <li>
-              <a>Score</a>
+              <a
+                className={location.pathname === "/score" ? "menu-active" : ""}
+                onClick={() => navigate("/score")}
+              >
+                Score
+              </a>
             </li>
           </ul>
         </div>
+
+        {/* avatar */}
         <div className="navbar-end">
           <div className="dropdown dropdown-end">
             <div
