@@ -7,7 +7,6 @@ function ScoreListItem() {
       <td>Math.</td>
       <td>2025 fall</td>
       <td>98.5</td>
-      <td>Blue</td>
       <th>
         <button className="btn btn-ghost btn-sm">details</button>
         <button className="btn btn-error btn-sm">delete</button>
