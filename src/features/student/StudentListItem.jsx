@@ -30,8 +30,8 @@ function StudentListItem() {
         <span className="badge badge-ghost badge-sm">Alex</span>
       </td>
       <th>
-        <button className="btn btn-ghost btn-xs">details</button>
-        <button className="btn btn-error btn-xs">delete</button>
+        <button className="btn btn-ghost btn-sm">details</button>
+        <button className="btn btn-error btn-sm">delete</button>
       </th>
     </tr>
   );

@@ -4,7 +4,7 @@ import StudentListItem from "./StudentListItem";
 function StudentList() {
   return (
     <div className="overflow-x-auto">
-      <table className="table">
+      <table className="table table-lg">
         {/* head */}
         <thead>
           <tr>
