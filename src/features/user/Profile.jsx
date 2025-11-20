@@ -17,12 +17,20 @@ function Profile() {
     <>
       <div className="w-96 max-w-full mx-auto shadow-2xl shadow-blue-300 rounded-box mt-40 px-8 py-10 bg-base-100">
         <div className="avatar flex justify-center mb-5">
-          <div className="w-24 rounded-full">
-            <img src={image} />
+          <div className="w-24 rounded-full ">
+            <label className="cursor-pointer" htmlFor="avatar-input">
+              <img src={image} />
+            </label>
           </div>
         </div>
 
-        <input type="file" accept="image/*" onChange={handleImageChange} />
+        <input
+          id="avatar-input"
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange}
+          className="hidden"
+        />
 
         <div className="space-y-6">
           <label className="input input-bordered flex items-center gap-2 ">
