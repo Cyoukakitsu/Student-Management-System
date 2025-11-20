@@ -33,6 +33,15 @@ function Login() {
             </svg>
             <input type="password" className="grow" placeholder="Password" />
           </label>
+
+          <div className="grid grid-cols-2 gap-2">
+            <label>
+              <input type="checkbox" className="checkbox checkbox-primary" />
+              <span className="mx-1 text-sm">Remember me</span>
+            </label>
+
+            <button className="btn btn-link">Forgotten password?</button>
+          </div>
         </div>
 
         <div className="text-center mt-10">

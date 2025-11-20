@@ -35,9 +35,9 @@ function Navbar() {
               <li>
                 <a
                   className={
-                    location.pathname === "/student" ? "menu-active" : ""
+                    location.pathname === "/home/student" ? "menu-active" : ""
                   }
-                  onClick={() => navigate("/student")}
+                  onClick={() => navigate("/home/student")}
                 >
                   Student
                 </a>
@@ -46,9 +46,9 @@ function Navbar() {
               <li>
                 <a
                   className={
-                    location.pathname === "/score" ? "menu-active" : ""
+                    location.pathname === "/home/score" ? "menu-active" : ""
                   }
-                  onClick={() => navigate("/score")}
+                  onClick={() => navigate("/home/score")}
                 >
                   Score
                 </a>
@@ -66,9 +66,9 @@ function Navbar() {
             <li>
               <a
                 className={
-                  location.pathname === "/student" ? "menu-active" : ""
+                  location.pathname === "/home/student" ? "menu-active" : ""
                 }
-                onClick={() => navigate("/student")}
+                onClick={() => navigate("/home/student")}
               >
                 Student
               </a>
@@ -76,8 +76,10 @@ function Navbar() {
 
             <li>
               <a
-                className={location.pathname === "/score" ? "menu-active" : ""}
-                onClick={() => navigate("/score")}
+                className={
+                  location.pathname === "/home/score" ? "menu-active" : ""
+                }
+                onClick={() => navigate("/home/score")}
               >
                 Score
               </a>
