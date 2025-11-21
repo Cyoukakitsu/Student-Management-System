@@ -1,12 +1,13 @@
 // import { useState } from 'react';
-function ScoreListItem() {
+
+function ScoreListItem({ scoreItem }) {
   return (
     <tr>
-      <td>Cy Ganderton</td>
-      <td>Class 1 | Year 6</td>
-      <td>Math.</td>
-      <td>2025 fall</td>
-      <td>98.5</td>
+      <td>{scoreItem.Name}</td>
+      <td>{scoreItem.Class}</td>
+      <td>{scoreItem.Subject}</td>
+      <td>{scoreItem.Semester}</td>
+      <td>{scoreItem.Score}</td>
       <th>
         <button className="btn btn-ghost btn-sm">details</button>
         <button className="btn btn-error btn-sm">delete</button>
@@ -14,4 +15,5 @@ function ScoreListItem() {
     </tr>
   );
 }
+
 export default ScoreListItem;

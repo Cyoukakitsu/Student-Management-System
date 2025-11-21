@@ -7,7 +7,6 @@ import Login from "./features/auth/Login";
 import Signup from "./features/auth/Signup";
 import Home from "./pages/home";
 
-import Applayout from "./ui/Applayout";
 import Profile from "./features/user/Profile";
 function App() {
   return (

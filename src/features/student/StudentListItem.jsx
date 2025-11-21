@@ -1,4 +1,4 @@
-function StudentListItem() {
+function StudentListItem({ studentItem }) {
   return (
     <tr>
       <th>
@@ -11,15 +11,15 @@ function StudentListItem() {
           <div className="avatar">
             <div className="mask mask-squircle h-12 w-12">
               <img
-                src="https://img.daisyui.com/images/profile/demo/5@94.webp"
+                src={studentItem.avatar}
                 alt="Avatar Tailwind CSS Component"
               />
             </div>
           </div>
           {/* name and gender */}
           <div>
-            <div className="font-bold">Yancy Tear</div>
-            <div className="text-sm opacity-50">female</div>
+            <div className="font-bold">{studentItem.Name}</div>
+            <div className="text-sm opacity-50">{studentItem.Gender}</div>
           </div>
         </div>
       </td>
