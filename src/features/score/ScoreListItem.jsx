@@ -1,6 +1,10 @@
 // import { useState } from 'react';
 
+import { useNavigate } from "react-router-dom";
+
 function ScoreListItem({ scoreItem }) {
+  const navigate = useNavigate();
+
   return (
     <tr>
       <td>{scoreItem.Name}</td>
@@ -9,7 +13,12 @@ function ScoreListItem({ scoreItem }) {
       <td>{scoreItem.Semester}</td>
       <td>{scoreItem.Score}</td>
       <th>
-        <button className="btn btn-ghost btn-sm">details</button>
+        <button
+          className="btn btn-ghost btn-sm"
+          onClick={() => navigate(`/home/edit/${scoreItem.id}`)}
+        >
+          details
+        </button>
         <button className="btn btn-error btn-sm">delete</button>
       </th>
     </tr>

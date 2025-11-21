@@ -8,6 +8,7 @@ import Signup from "./features/auth/Signup";
 import Home from "./pages/home";
 
 import Profile from "./features/user/Profile";
+import ScoreEdit from "./features/score/ScoreEdit";
 function App() {
   return (
     <BrowserRouter>
@@ -15,7 +16,10 @@ function App() {
         <Route path="/" element={<AppLayout />}>
           <Route path="" element={<Navigate to="/home/score" />} />
           <Route path="home" element={<Home />}>
-            <Route path="score" element={<ScoreList />} />
+            <Route path="score" element={<ScoreList />}>
+              <Route path="" element={<ScoreList />} />
+              <Route path=":id" element={<ScoreEdit />} />
+            </Route>
             <Route path="student" element={<StudentList />} />
             <Route path="profile" element={<Profile />} />
           </Route>

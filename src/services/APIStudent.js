@@ -86,6 +86,6 @@ const mockStudentList = [
 export function getStudentList() {
   return mockStudentList.map((item) => ({
     ...item,
-    avater: faker.image.avatar(),
+    avatar: faker.image.avatar(),
   }));
 }

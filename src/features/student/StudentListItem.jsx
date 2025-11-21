@@ -19,15 +19,17 @@ function StudentListItem({ studentItem }) {
           {/* name and gender */}
           <div>
             <div className="font-bold">{studentItem.Name}</div>
-            <div className="text-sm opacity-50">{studentItem.Gender}</div>
+            <div className="text-sm opacity-50">Student</div>
           </div>
         </div>
       </td>
       {/* class and room teacher */}
       <td>
-        Class 1 | Year 6
+        {studentItem.Class}
         <br />
-        <span className="badge badge-ghost badge-sm">Alex</span>
+        <span className="badge badge-ghost badge-sm">
+          {studentItem.Semester}
+        </span>
       </td>
       <th>
         <button className="btn btn-ghost btn-sm">details</button>
@@ -36,4 +38,5 @@ function StudentListItem({ studentItem }) {
     </tr>
   );
 }
+
 export default StudentListItem;
