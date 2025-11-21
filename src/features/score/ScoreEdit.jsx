@@ -14,7 +14,7 @@ function ScoreEdit() {
 
   return (
     <div className="w-1/3 mx-auto shadow-2xl shadow-blue-300 rounded-box mt-40">
-      <h1 className="text-center text-4xl pt-4">Alex</h1>
+      <h1 className="text-center text-4xl pt-4">My Information</h1>
 
       <div className="w-3/4 mx-auto">
         <label class="input input-bordered flex items-center gap-2 my-4">

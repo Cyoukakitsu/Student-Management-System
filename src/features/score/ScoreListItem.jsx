@@ -15,7 +15,7 @@ function ScoreListItem({ scoreItem }) {
       <th>
         <button
           className="btn btn-ghost btn-sm"
-          onClick={() => navigate(`/home/edit/${scoreItem.id}`)}
+          onClick={() => navigate(`/home/score/${scoreItem.id}`)}
         >
           details
         </button>
