@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 function StudentListItem({ studentItem }) {
+  const navigate = useNavigate();
+
   return (
     <tr>
       <th>
@@ -32,7 +36,12 @@ function StudentListItem({ studentItem }) {
         </span>
       </td>
       <th>
-        <button className="btn btn-ghost btn-sm">details</button>
+        <button
+          className="btn btn-ghost btn-sm"
+          onClick={() => navigate(`/home/student/${studentItem.id}`)}
+        >
+          details
+        </button>
         <button className="btn btn-error btn-sm">delete</button>
       </th>
     </tr>
