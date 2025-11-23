@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import ScoreListItem from "./ScoreListItem";
-import { getScoreList } from "../../services/APIScore";
+import { getScoreList } from "../../services/apiScore";
+
 function ScoreList() {
   const [scoreList, setScoreList] = useState([]);
 
   useEffect(() => {
     const mockScoreList = getScoreList();
-
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setScoreList(mockScoreList[0]);
+    setScoreList(mockScoreList);
   }, []);
 
   return (
@@ -32,4 +31,5 @@ function ScoreList() {
     </div>
   );
 }
+
 export default ScoreList;

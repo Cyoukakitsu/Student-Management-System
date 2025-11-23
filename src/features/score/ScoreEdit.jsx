@@ -14,19 +14,24 @@ function ScoreEdit() {
 
   return (
     <div className="w-1/3 mx-auto shadow-2xl shadow-blue-300 rounded-box mt-40">
-      <h1 className="text-center text-4xl pt-4">My Information</h1>
+      <h1 className="text-center text-4xl pt-4">Alex</h1>
 
       <div className="w-3/4 mx-auto">
-        <label class="input input-bordered flex items-center gap-2 my-4">
+        <label className="input input-bordered flex items-center gap-2 my-4">
           Class
-          <input type="text" class="grow" value="Class 1 | Year 8" disabled />
+          <input
+            type="text"
+            className="grow"
+            value="Class 1 | Year 8"
+            disabled
+          />
         </label>
 
-        <label class="input input-bordered flex items-center gap-2 my-4">
+        <label className="input input-bordered flex items-center gap-2 my-4">
           Score
           <input
             type="number"
-            class="grow"
+            className="grow"
             value={score}
             onChange={(e) => setScore(Number(e.target.value))}
           />

@@ -1,11 +1,11 @@
 function Signup() {
   return (
     <>
-      <div className="w-96 max-w-full mx-auto shadow-2xl shadow-blue-300 rounded-box mt-40 px-8 py-10 bg-base-100">
-        <h1 className="text-center text-4xl font-bold mb-10">Sunshine</h1>
+      <div className="w-1/3 mx-auto shadow-2xl shadow-blue-300 rounded-box mt-40">
+        <h1 className="text-center text-4xl">Sunshine</h1>
 
-        <div className="space-y-6">
-          <label className="input input-bordered flex items-center gap-2 ">
+        <div className="w-3/4 mx-auto">
+          <label className="input input-bordered flex items-center gap-2 my-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
@@ -18,7 +18,7 @@ function Signup() {
             <input type="text" className="grow" placeholder="Email" />
           </label>
 
-          <label className="input input-bordered flex items-center gap-2 ">
+          <label className="input input-bordered flex items-center gap-2 my-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
@@ -34,7 +34,7 @@ function Signup() {
             <input type="password" className="grow" placeholder="Password" />
           </label>
 
-          <label className="input input-bordered flex items-center gap-2 ">
+          <label className="input input-bordered flex items-center gap-2 my-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
@@ -55,9 +55,9 @@ function Signup() {
           </label>
         </div>
 
-        <div className="text-center mt-10">
-          <button className="btn btn-secondary w-32 mx-3">Signup</button>
-          <button className="btn btn-primary w-32 mx-3">Login</button>
+        <div className="text-center">
+          <button className="btn btn-secondary mx-2 my-2">Signup</button>
+          <button className="btn btn-primary mx-2 my-2">Login</button>
         </div>
       </div>
     </>

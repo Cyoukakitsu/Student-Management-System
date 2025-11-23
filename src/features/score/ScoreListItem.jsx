@@ -1,5 +1,3 @@
-// import { useState } from 'react';
-
 import { useNavigate } from "react-router-dom";
 
 function ScoreListItem({ scoreItem }) {
@@ -7,11 +5,11 @@ function ScoreListItem({ scoreItem }) {
 
   return (
     <tr>
-      <td>{scoreItem.Name}</td>
-      <td>{scoreItem.Class}</td>
-      <td>{scoreItem.Subject}</td>
-      <td>{scoreItem.Semester}</td>
-      <td>{scoreItem.Score}</td>
+      <td>{scoreItem.name}</td>
+      <td>{scoreItem.class}</td>
+      <td>{scoreItem.subject}</td>
+      <td>{scoreItem.semester}</td>
+      <td>{scoreItem.score}</td>
       <th>
         <button
           className="btn btn-ghost btn-sm"
@@ -24,5 +22,4 @@ function ScoreListItem({ scoreItem }) {
     </tr>
   );
 }
-
 export default ScoreListItem;

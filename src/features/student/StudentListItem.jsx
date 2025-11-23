@@ -22,18 +22,14 @@ function StudentListItem({ studentItem }) {
           </div>
           {/* name and gender */}
           <div>
-            <div className="font-bold">{studentItem.Name}</div>
-            <div className="text-sm opacity-50">Student</div>
+            <div className="font-bold">{studentItem.name}</div>
+            <div className="text-sm opacity-50">{studentItem.gender}</div>
           </div>
         </div>
       </td>
       {/* class and room teacher */}
       <td>
-        {studentItem.Class}
-        <br />
-        <span className="badge badge-ghost badge-sm">
-          {studentItem.Semester}
-        </span>
+        class {studentItem.class} | year {studentItem.grade}
       </td>
       <th>
         <button
