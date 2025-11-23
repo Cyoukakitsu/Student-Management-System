@@ -1,13 +1,18 @@
 import { useState } from "react";
 
-function StudentCreate() {
-  const [name, setName] = useState("John Doe");
-  const [classInfo, setClassInfo] = useState("Class 1 | Year 9");
+function StudentEdit() {
+  const [name, setName] = useState("Alex");
   const [gender, setGender] = useState("Male");
 
   return (
     <div className="w-1/3 mx-auto shadow-2xl shadow-blue-300 rounded-box mt-40">
-      <div className="w-3/4 mx-auto pt-4">
+      <div className="avatar pt-4 flex justify-center">
+        <div className="w-24 rounded-full ">
+          <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+        </div>
+      </div>
+
+      <div className="w-3/4 mx-auto">
         <label className="input input-bordered flex items-center gap-2 my-4">
           Name
           <input
@@ -15,16 +20,6 @@ function StudentCreate() {
             className="grow"
             value={name}
             onChange={(e) => setName(e.target.value)}
-          />
-        </label>
-
-        <label className="input input-bordered flex items-center gap-2 my-4">
-          Class
-          <input
-            type="text"
-            className="grow"
-            value={classInfo}
-            onChange={(e) => setClassInfo(e.target.value)}
           />
         </label>
 
@@ -40,10 +35,9 @@ function StudentCreate() {
       </div>
 
       <div className="text-center">
-        <button className="btn btn-primary my-2">Create Student</button>
+        <button className="btn btn-primary my-2">Update Profile</button>
       </div>
     </div>
   );
 }
-
-export default StudentCreate;
+export default StudentEdit;

@@ -1,17 +1,17 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import ScoreList from "./features/score/ScoreList";
-import StudentList from "./features/student/StudentList";
 import Login from "./features/auth/Login";
 import Signup from "./features/auth/Signup";
-import Profile from "./features/user/Profile";
+import ScoreList from "./features/score/ScoreList";
 import ScoreEdit from "./features/score/ScoreEdit";
+import StudentList from "./features/student/StudentList";
 import StudentEdit from "./features/student/StudentEdit";
+
 import ScoreUpload from "./features/score/ScoreUpload";
 import StudentCreate from "./features/student/StudentCreate";
-
 import AppLayout from "./ui/Applayout";
 import Home from "./pages/home";
+import Info from "./features/user/info";
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
               <Route path=":id" element={<StudentEdit />} />
               <Route path="create" element={<StudentCreate />} />
             </Route>
-            <Route path="profile" element={<Profile />} />
+            <Route path="info" element={<Info />} />
           </Route>
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />

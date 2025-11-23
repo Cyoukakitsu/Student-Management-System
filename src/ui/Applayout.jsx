@@ -1,11 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-function Applayout() {
-  return (
-    <>
-      <Outlet />
-    </>
-  );
+function AppLayout() {
+  return <Outlet />;
 }
-
-export default Applayout;
+export default AppLayout;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-function Profile() {
+function Info() {
   const [image, setImage] = useState(
     "https://i.pinimg.com/originals/78/7b/b1/787bb10ef4f399952cf290d649a0d1bd.jpg"
   );
@@ -77,4 +77,4 @@ function Profile() {
     </>
   );
 }
-export default Profile;
+export default Info;

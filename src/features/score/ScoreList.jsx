@@ -6,8 +6,11 @@ function ScoreList() {
   const [scoreList, setScoreList] = useState([]);
 
   useEffect(() => {
-    const mockScoreList = getScoreList();
-    setScoreList(mockScoreList);
+    const fetchScores = async () => {
+      const data = await getScoreList();
+      setScoreList(data);
+    };
+    fetchScores();
   }, []);
 
   return (
