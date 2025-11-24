@@ -1,3 +1,5 @@
+import { supabase } from "../utils/supabase";
+
 const mockScoreList = [
   {
     id: "1",
@@ -81,6 +83,11 @@ const mockScoreList = [
   },
 ];
 
-export function getScoreList() {
-  return mockScoreList;
+export async function getScoreList() {
+  const { data: score, error } = await supabase.from("score").select("*");
+
+  if (error) {
+    console.log(error.message);
+  }
+  return score;
 }

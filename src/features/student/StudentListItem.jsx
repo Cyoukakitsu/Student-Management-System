@@ -1,7 +1,23 @@
+
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function StudentListItem({ studentItem }) {
   const navigate = useNavigate();
+  const [imgSrc, setImgSrc] = useState(studentItem.avatar);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = studentItem.avatar;
+    img.onload = () => {
+      setImgSrc(studentItem.avatar);
+    };
+    img.onerror = () => {
+      setImgSrc(
+        `https://ui-avatars.com/api/?name=${studentItem.name}&background=random`
+      );
+    };
+  }, [studentItem.avatar, studentItem.name]);
 
   return (
     <tr>
@@ -15,7 +31,7 @@ function StudentListItem({ studentItem }) {
           <div className="avatar">
             <div className="mask mask-squircle h-12 w-12">
               <img
-                src={studentItem.avatar}
+                src={imgSrc}
                 alt="Avatar Tailwind CSS Component"
               />
             </div>
