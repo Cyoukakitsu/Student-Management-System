@@ -1,8 +1,15 @@
 import { useNavigate, useLocation } from "react-router-dom";
+import { signout } from "../services/APIAuth";
 
 function NavBar() {
   const navigate = useNavigate();
   const location = useLocation();
+
+  async function onClick() {
+    await signout();
+
+    navigate("/login");
+  }
 
   return (
     <div className="navbar bg-base-300">
@@ -108,7 +115,7 @@ function NavBar() {
             </li>
 
             <li>
-              <a>Logout</a>
+              <a onClick={onClick}>Logout</a>
             </li>
           </ul>
         </div>

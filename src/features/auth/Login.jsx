@@ -1,4 +1,20 @@
+import { useState } from "react";
+import { login } from "../../services/APIAuth";
+import { useNavigate } from "react-router-dom";
+
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+  async function onClick() {
+    const data = await login(email, password);
+
+    if (data) {
+      navigate("/");
+    }
+  }
+
   return (
     <div className="w-1/3 mx-auto shadow-2xl shadow-blue-300 rounded-box mt-40">
       <h1 className="text-center text-4xl">Sunshine</h1>
@@ -14,7 +30,13 @@ function Login() {
             <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
             <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
           </svg>
-          <input type="text" className="grow" placeholder="Email" />
+          <input
+            type="text"
+            className="grow"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </label>
 
         <label className="input input-bordered flex items-center gap-2 my-4">
@@ -30,7 +52,13 @@ function Login() {
               clipRule="evenodd"
             />
           </svg>
-          <input type="password" className="grow" placeholder="Password" />
+          <input
+            type="password"
+            className="grow"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </label>
 
         <div className="grid grid-cols-2 gap-2">
@@ -44,7 +72,9 @@ function Login() {
       </div>
 
       <div className="text-center">
-        <button className="btn btn-primary mx-2 my-2">Login</button>
+        <button className="btn btn-primary mx-2 my-2" onClick={onClick}>
+          Login
+        </button>
         <button className="btn btn-secondary mx-2 my-2">Signup</button>
       </div>
     </div>
