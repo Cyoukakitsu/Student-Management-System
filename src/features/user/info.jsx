@@ -1,16 +1,27 @@
 import { useState } from "react";
+import { uploadAvatar } from "../../services/APIStorage";
 function Info() {
-  const [image, setImage] = useState(
+  const [currentAvatarUrl, setCurrentAvatarUrl] = useState(
     "https://i.pinimg.com/originals/78/7b/b1/787bb10ef4f399952cf290d649a0d1bd.jpg"
   );
 
+  const [avatarFile, setAvatarFile] = useState(null);
+
   function handleImageChange(e) {
     const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      setImage(reader.result);
-    };
-    reader.readAsDataURL(file);
+    setAvatarFile(file);
+
+    const newAvatarUrl = URL.createObjectURL(file);
+    setCurrentAvatarUrl(newAvatarUrl);
+  }
+
+  async function onClick() {
+    if (!avatarFile) {
+      console.log("No file selected");
+      return;
+    }
+    const data = await uploadAvatar(avatarFile);
+    console.log(data);
   }
 
   return (
@@ -19,7 +30,7 @@ function Info() {
         <div className="avatar flex justify-center mb-5">
           <div className="w-24 rounded-full ">
             <label className="cursor-pointer" htmlFor="avatar-input">
-              <img src={image} />
+              <img src={currentAvatarUrl} />
             </label>
           </div>
         </div>
@@ -71,7 +82,9 @@ function Info() {
         </div>
 
         <div className="text-center mt-10">
-          <button className="btn btn-primary  my-2">Update Avatar</button>
+          <button className="btn btn-primary  my-2" onClick={onClick}>
+            Update Avatar
+          </button>
         </div>
       </div>
     </>
