@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { signup } from "../../services/APIAuth";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confiemPassword, setConfiemPassword] = useState("");
 
+  const navigate = useNavigate();
   async function onClick() {
     const data = await signup(email, password);
 
@@ -86,7 +88,12 @@ function Signup() {
           <button className="btn btn-secondary mx-2 my-2" onClick={onClick}>
             Signup
           </button>
-          <button className="btn btn-primary mx-2 my-2">Login</button>
+          <button
+            className="btn btn-primary mx-2 my-2"
+            onClick={() => navigate("/login")}
+          >
+            Login
+          </button>
         </div>
       </div>
     </>

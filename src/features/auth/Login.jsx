@@ -75,7 +75,12 @@ function Login() {
         <button className="btn btn-primary mx-2 my-2" onClick={onClick}>
           Login
         </button>
-        <button className="btn btn-secondary mx-2 my-2">Signup</button>
+        <button
+          className="btn btn-secondary mx-2 my-2"
+          onClick={() => navigate("/signup")}
+        >
+          Signup
+        </button>
       </div>
     </div>
   );

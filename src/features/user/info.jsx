@@ -1,11 +1,20 @@
 import { useState } from "react";
 import { uploadAvatar } from "../../services/APIStorage";
+import { useEffect } from "react";
+import { getConfig } from "../../utils/configHelper";
 function Info() {
   const [currentAvatarUrl, setCurrentAvatarUrl] = useState(
     "https://i.pinimg.com/originals/78/7b/b1/787bb10ef4f399952cf290d649a0d1bd.jpg"
   );
 
   const [avatarFile, setAvatarFile] = useState(null);
+
+  useEffect(() => {
+    const token = getConfig("SUPABASE_TOKEN");
+    const userToken = JSON.parse(localStorage.getItem(token));
+
+    setCurrentAvatarUrl(userToken.user.user_metadata.avatar);
+  }, []);
 
   function handleImageChange(e) {
     const file = e.target.files[0];
