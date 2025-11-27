@@ -15,6 +15,10 @@ function NavBar() {
     const token = getConfig("SUPABASE_TOKEN");
     const userToken = JSON.parse(localStorage.getItem(token));
 
+    if (!userToken) {
+      return;
+    }
+
     setUser(userToken.user.user_metadata);
   }, []);
   async function onClick() {

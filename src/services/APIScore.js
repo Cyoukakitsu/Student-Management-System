@@ -88,6 +88,7 @@ export async function getScoreList() {
 
   if (error) {
     console.log(error.message);
+    return;
   }
   return score;
 }

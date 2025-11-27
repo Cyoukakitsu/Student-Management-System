@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { signup } from "../../services/APIAuth";
 import { useNavigate } from "react-router-dom";
+import { createTeacher } from "../../services/APITeacher";
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -8,10 +9,15 @@ function Signup() {
   const [confiemPassword, setConfiemPassword] = useState("");
 
   const navigate = useNavigate();
+
   async function onClick() {
     const data = await signup(email, password);
 
     console.log(data);
+
+    const teacherId = data.user.id;
+    const teacher = await createTeacher({ teacher_id: teacherId });
+    console.log(teacher);
   }
 
   return (
