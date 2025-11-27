@@ -1,19 +1,21 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { signout } from "../services/APIAuth";
-import { useState } from "react";
 import { useEffect } from "react";
 import { getConfig } from "../utils/configHelper";
+import { useAtom } from "jotai";
+import { userAtom } from "../atoms/user";
 
 function NavBar() {
+  const [user, setUser] = useAtom(userAtom);
+
   const navigate = useNavigate();
   const location = useLocation();
-  const [currentAvatarUrl, setCurrentAvatarUrl] = useState("");
 
   useEffect(() => {
     const token = getConfig("SUPABASE_TOKEN");
     const userToken = JSON.parse(localStorage.getItem(token));
 
-    setCurrentAvatarUrl(userToken.user.user_metadata.avatar);
+    setUser(userToken.user.user_metadata);
   }, []);
   async function onClick() {
     await signout();
@@ -105,7 +107,7 @@ function NavBar() {
             className="btn btn-ghost btn-circle avatar"
           >
             <div className="w-10 rounded-full">
-              <img alt="Tailwind CSS Navbar component" src={currentAvatarUrl} />
+              <img alt="Tailwind CSS Navbar component" src={user.avatar} />
             </div>
           </div>
           <ul

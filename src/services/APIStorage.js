@@ -20,7 +20,8 @@ export async function uploadAvatar(avatarFile) {
   if (error) {
     console.log(error.message);
   }
-  const newAvatarUrl = `${supabaseUrl}/storage/v1/object/public/${avatarFilename}`;
+  // 修复URL生成方式，正确构造Supabase存储的公共URL
+  const newAvatarUrl = `${supabaseUrl}/storage/v1/object/public/avatar/public/${avatarFilename}`;
   const newUserMetadata = await updateUser({ avatar: newAvatarUrl });
 
   return newUserMetadata;
