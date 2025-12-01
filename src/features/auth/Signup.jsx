@@ -16,8 +16,7 @@ function Signup() {
     console.log(data);
 
     const teacherId = data.user.id;
-    const teacher = await createTeacher({ teacher_id: teacherId });
-    console.log(teacher);
+    await createTeacher({ teacher_id: teacherId });
   }
 
   return (

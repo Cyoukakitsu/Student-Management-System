@@ -83,3 +83,16 @@ export async function getStudentList() {
   }
   return student;
 }
+export async function createStudent(newStudent) {
+  const { data, error } = await supabase
+    .from("student")
+    .insert([newStudent])
+    .select();
+
+  if (error) {
+    console.log(error.message);
+    return;
+  }
+
+  return data;
+}
