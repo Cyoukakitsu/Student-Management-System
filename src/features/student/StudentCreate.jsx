@@ -1,30 +1,54 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 import { getConfig } from "../../utils/configHelper";
+
 import { getTeacherByTeacherId } from "../../services/APITeacher";
+import { createStudent } from "../../services/APIStudent";
+import { signup } from "../../services/APIAuth";
 
 function StudentCreate() {
   const [name, setName] = useState("Someone");
-  const [classInfo, setClassInfo] = useState("x | x");
   const [email, setEmail] = useState("some@example.com");
+
+  const [teacherId, setTeacherId] = useState("");
+
   const [classInChargeArr, setClassInChargeArr] = useState([]);
+
+  const [classInfo, setClassInfo] = useState("x | x");
   const [gender, setGender] = useState("male");
 
   useEffect(() => {
-    const token = getConfig("SUPER_TOKEN");
-    const userToken = JSON.parse(localStorage.getItem(token));
-
-    if (!userToken) {
-      return;
-    }
     async function fetchData() {
+      const token = getConfig("SUPER_TOKEN");
+      const userToken = JSON.parse(localStorage.getItem(token));
+
+      if (!userToken) return;
+
+      setTeacherId(userToken.user.id);
+
       const teachers = await getTeacherByTeacherId(userToken.user.id);
       setClassInChargeArr(JSON.parse(teachers[0].class_in_charge));
     }
+
     fetchData();
   }, []);
 
-  async function onClick() {}
+  async function onClick() {
+    const userData = await signup(email, "123456", { isStudent: true });
+    console.log(userData);
+
+    const students = await createStudent({
+      name,
+      class: classInfo.split("|")[0],
+      grade: classInfo.split("|")[1],
+      gender,
+      teacher_id: teacherId,
+      avatar:
+        "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp",
+      student_id: userData.user.id,
+    });
+    console.log(students);
+  }
 
   return (
     <div className="w-1/3 mx-auto shadow-2xl shadow-blue-300 rounded-box mt-40">
@@ -72,7 +96,9 @@ function StudentCreate() {
       </div>
 
       <div className="text-center">
-        <button className="btn btn-primary my-2">Create Student</button>
+        <button className="btn btn-primary my-2" onClick={onClick}>
+          Create Student
+        </button>
       </div>
     </div>
   );

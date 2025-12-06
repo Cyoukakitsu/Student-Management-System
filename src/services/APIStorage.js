@@ -11,7 +11,6 @@ export async function uploadAvatar(avatarFile) {
 
   const { data, error } = await supabase.storage
     .from("avatar")
-    //TODO  : change the name
     .upload(`public/${avatarFilename}`, avatarFile, {
       cacheControl: "3600",
       upsert: false,

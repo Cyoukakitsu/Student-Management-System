@@ -9,73 +9,40 @@ import { getConfig } from "../../utils/configHelper";
 function Info() {
   const [user, setUser] = useAtom(userAtom);
 
-  const [currentAvatarUrl, setCurrentAvatarUrl] = useState(user?.avatar || "");
+  const [currentAvatarUrl, setCurrentAvatarUrl] = useState(user.avatar);
   const [avatarFile, setAvatarFile] = useState(null);
-
-  const [classInChargeArr, setClassInChargeArr] = useState([]);
 
   // 更新 avatar
   useEffect(() => {
     setCurrentAvatarUrl(user?.avatar || "");
   }, [user]);
 
-  // 安全加载教师数据
+  const [classInChargeArr, setClassInChargeArr] = useState([]);
+
   useEffect(() => {
     async function loadData() {
       const token = getConfig("SUPABASE_TOKEN");
       const userToken = JSON.parse(localStorage.getItem(token));
 
-      if (!userToken?.user?.id) {
-        console.warn("No valid user token found in localStorage");
-        return;
-      }
+      if (!userToken) return;
 
-      console.log("userToken.user.id:", userToken.user.id);
+      const teachers = await getTeacherByTeacherId(userToken.user.id);
+      const teacher = teachers[0];
 
-      try {
-        const teachers = await getTeacherByTeacherId(userToken.user.id);
-
-        if (!Array.isArray(teachers) || teachers.length === 0) {
-          console.warn("No teacher found for this user:", userToken.user.id);
-          return;
-        }
-
-        const teacher = teachers[0];
-
-        if (!teacher?.class_in_charge) {
-          console.warn("teacher.class_in_charge is missing:", teacher);
-          return;
-        }
-
-        try {
-          const parsedClasses = JSON.parse(teacher.class_in_charge);
-          if (Array.isArray(parsedClasses)) {
-            setClassInChargeArr(parsedClasses);
-          } else {
-            console.warn("class_in_charge is not an array:", parsedClasses);
-          }
-        } catch (e) {
-          console.error(
-            "Failed to parse class_in_charge JSON:",
-            e,
-            teacher.class_in_charge
-          );
-        }
-      } catch (err) {
-        console.error("Error loading teacher data:", err);
+      if (teacher?.class_in_charge) {
+        setClassInChargeArr(JSON.parse(teacher.class_in_charge));
       }
     }
 
     loadData();
   }, []);
 
-  // 处理上传 avatar
   function handleImageChange(e) {
     const file = e.target.files[0];
-    if (!file) return;
+    setAvatarFile(!file);
 
-    setAvatarFile(file);
-    setCurrentAvatarUrl(URL.createObjectURL(file));
+    const newAvatarUrl = URL.createObjectURL(file);
+    setCurrentAvatarUrl(newAvatarUrl);
   }
 
   async function onClick() {
@@ -84,12 +51,8 @@ function Info() {
       return;
     }
 
-    try {
-      const data = await uploadAvatar(avatarFile);
-      setUser(data.user.user_metadata);
-    } catch (err) {
-      console.error("Failed to upload avatar:", err);
-    }
+    const data = await uploadAvatar(avatarFile);
+    setUser(data.user.user_metadata);
   }
 
   return (
@@ -110,25 +73,28 @@ function Info() {
         className="hidden"
       />
 
-      <div className="space-y-6">
-        <label className="input input-bordered flex items-center gap-2">
-          <input
-            type="text"
-            className="grow"
-            value={user?.name || "My Name"}
-            disabled
-          />
+      <div className="w-3/4 mx-auto">
+        <label className="input input-bordered flex items-center gap-2 my-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            className="h-4 w-4 opacity-70"
+          >
+            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+          </svg>
+          <input type="text" className="grow" value="Alex" disabled />
         </label>
 
         {classInChargeArr.length > 0 && (
-          <ul className="menu bg-base-200 rounded-box w-auto">
+          <ul className="menu bg-base-200 rounded-box">
             <li>
               <details open>
-                <summary>Class in Charge</summary>
+                <summary>Class In Charge</summary>
                 <ul>
                   {classInChargeArr.map((classItem, idx) => (
                     <li key={idx}>
-                      <a>
+                      <a className="pointer-events-none">
                         Class {classItem.split("|")[0]} | Year{" "}
                         {classItem.split("|")[1]}
                       </a>
@@ -141,7 +107,7 @@ function Info() {
         )}
       </div>
 
-      <div className="text-center mt-10">
+      <div className="text-center">
         <button className="btn btn-primary my-2" onClick={onClick}>
           Update Avatar
         </button>

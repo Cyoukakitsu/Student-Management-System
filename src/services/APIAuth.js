@@ -38,7 +38,6 @@ export async function signout() {
 
   if (error) {
     console.log(error.message);
-    return;
   }
 }
 
